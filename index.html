@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desarrollo web para mypes en Arequipa | DevTándem</title>
+  <meta name="description" content="Páginas web y aplicaciones para mypes en Arequipa. Un desarrollador junior crea tu solución y un mentor senior revisa el trabajo.">
+  <meta name="theme-color" content="#fbfaf6">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="DevTándem">
+  <meta property="og:title" content="Desarrollo web para mypes en Arequipa | DevTándem">
+  <meta property="og:description" content="Páginas web y aplicaciones para mypes en Arequipa, desarrolladas por un junior y revisadas por un mentor senior.">
+  <link rel="icon" type="image/jpeg" href="icon.jpeg">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              navy: '#12213D',
+              navyDark: '#0B1528',
+              green: '#2E9E5B',
+              greenLight: '#38BE6E',
+              amber: '#F59E0B',
+              blue: '#2563EB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fbfaf6] text-[#25364a] font-sans antialiased selection:bg-[#176d67] selection:text-white">
+
+  <!-- TOP APP HEADER / BARRA DE NAVEGACIÓN MINIMALISTA -->
+  <header class="site-header sticky top-0 z-50 border-b border-[#e7e4dc] bg-[#fbfaf6]/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <a href="#inicio" onclick="switchView('landing')" class="flex shrink-0 items-center gap-3" aria-label="DevTándem, inicio">
+        <img class="brand-logo" src="icon.jpeg" width="48" height="48" alt="Logo de DevTándem: dos personas trabajando en equipo">
+        <span><strong class="block text-lg font-bold tracking-tight text-[#14243b]">Dev<span class="text-[#267b73]">Tándem</span></strong><span class="block text-xs text-[#5f6a75]">Desarrollo web con revisión senior</span></span>
+      </a>
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
+        <a class="site-nav-link" href="#servicios" onclick="switchView('landing')">Qué hacemos</a>
+        <a class="site-nav-link" href="#como-funciona" onclick="switchView('landing')">Cómo funciona</a>
+        <a class="site-nav-link" href="#ejemplos" onclick="switchView('landing')">Ejemplos</a>
+        <a class="site-nav-link" href="#precios" onclick="switchView('landing')">Precios</a>
+        <a class="site-nav-link" href="#preguntas" onclick="switchView('landing')">Preguntas</a>
+      </nav>
+      <div class="flex shrink-0 items-center gap-2">
+        <button onclick="switchView('cliente')" class="hidden rounded-lg border border-[#d7ddd8] px-4 py-2.5 text-sm font-semibold text-[#24374d] transition hover:bg-white sm:inline-flex">Ver demostración</button>
+        <button onclick="openProjectModal()" class="rounded-lg bg-[#176d67] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#125a55]">Cotizar proyecto</button>
+      </div>
+    </div>
+    <nav class="mobile-anchor-nav flex gap-2 overflow-x-auto border-t border-[#e7e4dc] px-4 py-2.5 lg:hidden" aria-label="Secciones de la página">
+      <a href="#servicios" onclick="switchView('landing')">Servicio</a><a href="#como-funciona" onclick="switchView('landing')">Cómo funciona</a><a href="#ejemplos" onclick="switchView('landing')">Ejemplos</a><a href="#precios" onclick="switchView('landing')">Precios</a><a href="#preguntas" onclick="switchView('landing')">Preguntas</a><button onclick="switchView('cliente')">Demo</button>
+    </nav>
+  </header>
+
+  <main id="view-landing" class="page-view block">
+    <section id="inicio" class="hero-section">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_.9fr]">
+        <div>
+          <p class="eyebrow">Desarrollo de software para mypes en Arequipa</p>
+          <h1 class="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-[#14243b] sm:text-5xl">Una solución digital para tu negocio, creada en equipo y revisada por un senior.</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#4e5c68]">DevTándem desarrolla páginas web y aplicaciones a medida. Un desarrollador junior construye tu proyecto y un mentor senior revisa el trabajo antes de cada entrega.</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <button onclick="openProjectModal()" class="primary-action">Consultar o cotizar mi proyecto <span aria-hidden="true">→</span></button>
+            <a href="#como-funciona" class="secondary-action">Conocer cómo funciona</a>
+          </div>
+          <p class="mt-4 text-sm text-[#5f6a75]">El formulario de cotización es una demostración y no envía datos.</p>
+        </div>
+        <div class="hero-panel">
+          <div class="flex items-center justify-between gap-4 border-b border-[#e4e7e1] pb-5">
+            <div><p class="eyebrow">Un equipo para tu proyecto</p><h2 class="mt-2 text-xl font-bold text-[#14243b]">Dos roles, un mismo objetivo</h2></div>
+            <span class="hero-icon" aria-hidden="true">↗</span>
+          </div>
+          <div class="role-row"><span class="role-number">01</span><div><h3>El junior desarrolla</h3><p>Construye la página o aplicación según el alcance acordado.</p></div></div>
+          <div class="role-row"><span class="role-number">02</span><div><h3>El mentor senior revisa</h3><p>Revisa la calidad técnica y orienta los ajustes antes de la entrega.</p></div></div>
+          <div class="hero-note"><strong>¿Tienes una idea, pero no sabes cómo explicarla?</strong><span>Cuéntanos qué tarea quieres resolver en tu negocio. Puedes empezar con palabras sencillas.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="content-section">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div class="section-heading"><p class="eyebrow">Qué servicio ofrece</p><h2>Herramientas digitales hechas para el trabajo diario</h2><p>Desarrollo web para negocios que quieren organizar mejor su atención, sus ventas o sus tareas internas.</p></div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="info-card"><span class="card-kicker">01 · Presencia en internet</span><h3>Páginas web para negocios en Arequipa</h3><p>Una página clara para presentar tus servicios, mostrar información útil y recibir consultas.</p></article>
+          <article class="info-card"><span class="card-kicker">02 · Gestión en línea</span><h3>Aplicación web para mypes</h3><p>Una herramienta que puede reunir usuarios, información y tareas en un mismo lugar, según el alcance del proyecto.</p></article>
+          <article class="info-card"><span class="card-kicker">03 · Atención y agenda</span><h3>Sistema de reservas para negocios</h3><p>Una opción para gestionar citas o reservas en línea. Las funciones se definen contigo antes de cotizar.</p></article>
+        </div>
+        <div class="audience-note mt-6"><strong>¿Para quién es?</strong><span>Para dueños y encargados de mypes que necesitan una página web o un sistema sencillo para atender clientes, organizar información o gestionar su negocio, sin tener que programar.</span></div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="warm-section">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div class="section-heading"><p class="eyebrow">Cómo funciona</p><h2>De tu necesidad a una solución, paso a paso</h2><p>Conversamos en lenguaje sencillo y acordamos el alcance antes de comenzar.</p></div>
+        <div class="grid gap-4 md:grid-cols-4">
+          <article class="step-card"><span>01</span><h3>Nos cuentas tu idea</h3><p>Explícanos qué necesita hacer tu negocio y qué te gustaría mejorar.</p></article>
+          <article class="step-card"><span>02</span><h3>Definimos el alcance</h3><p>Ordenamos las funciones necesarias y el tipo de solución que encaja con tu necesidad.</p></article>
+          <article class="step-card"><span>03</span><h3>El equipo desarrolla</h3><p>El junior construye el proyecto; el mentor senior revisa y guía el trabajo.</p></article>
+          <article class="step-card"><span>04</span><h3>Revisas la entrega</h3><p>Recibes una solución revisada según el alcance acordado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos" class="content-section">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div class="section-heading"><p class="eyebrow">Ejemplos de soluciones</p><h2>¿Qué podrías resolver con una herramienta digital?</h2><p>Son ejemplos de tipos de proyecto, no casos de clientes ni resultados garantizados.</p></div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="info-card"><h3>Mostrar tus servicios</h3><p>Una web informativa con los datos y formas de contacto de tu negocio.</p><span class="example-type">Web informativa</span></article>
+          <article class="info-card"><h3>Organizar citas o reservas</h3><p>Una aplicación web para ordenar solicitudes de horario o disponibilidad.</p><span class="example-type">Aplicación web</span></article>
+          <article class="info-card"><h3>Consultar productos o pedidos</h3><p>Una tienda virtual o herramienta para administrar catálogo y pedidos.</p><span class="example-type">Tienda virtual</span></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PRECIOS Y NIVELES DE PROYECTO (Tabla 23 del informe) -->
+    <section id="precios" class="py-16 bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#2E9E5B]">Tarifas Transparentes</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Precios orientativos por tipo de proyecto</h2>
+          <p class="text-sm text-slate-600 mt-2">
+            Estos montos corresponden a los niveles de proyecto de la propuesta. El alcance final puede cambiar el presupuesto; conversemos sobre lo que necesita tu negocio.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- BÁSICO -->
+          <div class="ui-card p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Nivel Básico</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-3">Landing Page / Web Informativa</h3>
+              <p class="text-xs text-slate-500 mt-1">~30 horas estimadas • Ideal para presencia comercial</p>
+
+              <div class="mt-4 p-3 bg-slate-50 rounded-lg">
+                <div class="text-2xl font-bold text-slate-900 font-mono">S/ 950.00</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Estimado para una web informativa</div>
+              </div>
+
+              <div class="mt-4 space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                <div class="flex justify-between"><span>Junior (~63%):</span> <strong>S/ 600.00</strong></div>
+                <div class="flex justify-between"><span>Mentor (~25%):</span> <strong>S/ 240.00</strong></div>
+                <div class="flex justify-between"><span>DevTándem (~12%):</span> <strong>S/ 110.00</strong></div>
+              </div>
+
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-600">
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Diseño 100% responsive</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Formulario y botón de WhatsApp</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Revisión senior previa</li>
+              </ul>
+            </div>
+
+            <button onclick="openCustomCheckout('Landing Page', 950)" class="mt-6 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-lg transition">
+              Consultar este precio
+            </button>
+          </div>
+
+          <!-- INTERMEDIO (SERVICIO ESTRELLA) -->
+          <div class="ui-card p-6 border-2 border-emerald-500 shadow-sm flex flex-col justify-between relative bg-emerald-50/10">
+            <span class="absolute -top-3 right-6 bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+              Aplicación a medida
+            </span>
+
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Nivel Intermedio</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-3">Aplicación Web con Usuarios & BD</h3>
+              <p class="text-xs text-slate-500 mt-1">~100 horas estimadas • Catálogo, gestión y agenda</p>
+
+              <div class="mt-4 p-3 bg-white border border-emerald-200 rounded-lg">
+                <div class="text-2xl font-bold text-emerald-800 font-mono">S/ 3,200.00</div>
+                <div class="text-[11px] text-emerald-700 mt-0.5">Incluye revisión senior</div>
+              </div>
+
+              <div class="mt-4 space-y-1.5 text-xs text-slate-600 border-t border-emerald-100 pt-3">
+                <div class="flex justify-between"><span>Junior (~63%):</span> <strong>S/ 2,000.00</strong></div>
+                <div class="flex justify-between"><span>Mentor (~25%):</span> <strong>S/ 800.00</strong></div>
+                <div class="flex justify-between"><span>DevTándem (~12%):</span> <strong>S/ 400.00</strong></div>
+              </div>
+
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-600">
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Base de datos PostgreSQL / MongoDB</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Autenticación y roles de usuario</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Auditoría intermedia y final por Tech Lead</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Sello “Proyecto validado por mentor”</li>
+              </ul>
+            </div>
+
+            <button onclick="openCustomCheckout('Aplicación Web Dinámica', 3200)" class="mt-6 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-sm transition">
+              Consultar este precio
+            </button>
+          </div>
+
+          <!-- AVANZADO -->
+          <div class="ui-card p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Nivel Avanzado</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-3">Tienda Virtual / Plataforma Integral</h3>
+              <p class="text-xs text-slate-500 mt-1">~150 horas estimadas • Pasarela y administración</p>
+
+              <div class="mt-4 p-3 bg-slate-50 rounded-lg">
+                <div class="text-2xl font-bold text-slate-900 font-mono">S/ 4,800.00</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Dividido en 3 entregables con custodia</div>
+              </div>
+
+              <div class="mt-4 space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                <div class="flex justify-between"><span>Junior (~63%):</span> <strong>S/ 3,000.00</strong></div>
+                <div class="flex justify-between"><span>Mentor (~25%):</span> <strong>S/ 1,200.00</strong></div>
+                <div class="flex justify-between"><span>DevTándem (~12%):</span> <strong>S/ 600.00</strong></div>
+              </div>
+
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-600">
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Pasarela de pagos (Culqi / Niubiz)</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Panel de pedidos e inventario</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Pruebas automatizadas y seguridad</li>
+              </ul>
+            </div>
+
+            <button onclick="openCustomCheckout('Tienda Virtual Completa', 4800)" class="mt-6 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-lg transition">
+              Consultar este precio
+            </button>
+          </div>
+
+        </div>
+
+        <!-- CALCULADORA DE HORAS CON APORTE DEL FOCUS GROUP (Niveles de ejecutor) -->
+        <div class="mt-12 ui-card p-6 bg-slate-50 border-slate-200">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <span class="text-xs font-bold text-[#2E9E5B] uppercase tracking-wider">Estimación por horas</span>
+              <h3 class="text-base font-bold text-slate-900">Calcula una referencia de costo</h3>
+              <p class="text-xs text-slate-500">Ajusta las horas y el nivel del desarrollador. El cálculo suma la revisión de un mentor senior.</p>
+            </div>
+
+            <!-- Executor level buttons -->
+            <div class="flex items-center gap-1.5">
+              <button onclick="setExecutorLevel('junior')" id="btn-exec-junior" class="py-1.5 px-3 rounded-lg text-xs font-bold bg-[#12213D] text-white shadow-sm">Junior (S/ 20/h)</button>
+              <button onclick="setExecutorLevel('semisenior')" id="btn-exec-semisenior" class="py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200">Semi-Senior (S/ 30/h)</button>
+              <button onclick="setExecutorLevel('senior')" id="btn-exec-senior" class="py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200">Senior Lead (S/ 45/h)</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6 items-center">
+            <div class="md:col-span-8">
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-bold text-slate-700">Horas de desarrollo estimadas:</label>
+                <span id="calc-hours-badge" class="px-2.5 py-0.5 rounded bg-[#12213D] text-white font-mono text-xs font-bold">60 horas</span>
+              </div>
+              <input type="range" id="calc-hours-slider" min="20" max="180" step="5" value="60" oninput="updateCalculator(this.value)" class="w-full h-2 bg-slate-200 rounded-lg cursor-pointer">
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-mono">
+                <span>20h (Mínimo)</span>
+                <span>60h</span>
+                <span>120h</span>
+                <span>180h (Complejo)</span>
+              </div>
+            </div>
+
+            <div class="md:col-span-4 bg-white p-4 rounded-xl border border-slate-200 text-left">
+              <div class="text-[11px] font-bold text-slate-400 uppercase">Estimado referencial</div>
+              <div id="calc-total" class="text-2xl font-black text-emerald-700 font-mono mt-0.5">S/ 1,900.00</div>
+              <div class="mt-2 space-y-1 text-[11px] text-slate-500 border-t border-slate-100 pt-2 font-mono">
+                <div class="flex justify-between"><span>Ejecutor (<span id="calc-junior-hours">60</span>h):</span> <strong id="calc-junior-val" class="text-slate-700">S/ 1,200.00</strong></div>
+                <div class="flex justify-between"><span>Mentor QA (<span id="calc-mentor-hours">12</span>h @ S/ 40):</span> <strong id="calc-mentor-val" class="text-slate-700">S/ 480.00</strong></div>
+                <div class="flex justify-between"><span>Plataforma (~12%):</span> <strong id="calc-platform-val" class="text-slate-700">S/ 220.00</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="preguntas" class="warm-section">
+      <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+        <div class="section-heading"><p class="eyebrow">Preguntas frecuentes</p><h2>Antes de empezar</h2></div>
+        <div class="faq-list">
+          <details><summary>¿Necesito saber de programación?</summary><p>No. Puedes explicar qué necesita hacer tu negocio en palabras sencillas. El equipo te ayuda a convertirlo en un alcance de proyecto.</p></details>
+          <details><summary>¿Quién desarrolla y quién revisa?</summary><p>Un desarrollador junior construye la solución y un mentor senior revisa el trabajo y orienta los ajustes antes de la entrega.</p></details>
+          <details><summary>¿Cuánto cuesta un proyecto?</summary><p>La propuesta muestra tres precios orientativos: S/ 950 para una web informativa, S/ 3,200 para una aplicación web y S/ 4,800 para una tienda virtual. El alcance final debe conversarse.</p></details>
+          <details><summary>¿Puedo pedir un sistema de reservas o una función distinta?</summary><p>Sí, puedes consultar por un sistema de reservas u otra necesidad. Primero se define qué debe hacer para estimar su alcance y precio.</p></details>
+          <details><summary>¿El botón de cotización envía una solicitud?</summary><p>No. Este sitio está preparado como una demostración estática. El formulario permite explorar un ejemplo de cotización, pero no envía ni guarda tus datos.</p></details>
+          <details><summary>¿Qué significa la custodia que aparece en la demostración?</summary><p>La custodia y los paneles interactivos muestran el flujo previsto por el prototipo. Este sitio estático no procesa pagos ni administra proyectos reales.</p></details>
+        </div>
+        <div class="closing-cta mt-10"><div><p class="eyebrow">Siguiente paso</p><h2>Cuéntanos qué necesita tu negocio</h2><p>Explora una estimación de precio y el alcance que podría tener tu idea.</p></div><button onclick="openProjectModal()" class="primary-action">Consultar o cotizar <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+    <footer class="site-footer"><div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between"><div class="flex items-center gap-3"><img class="footer-logo" src="icon.jpeg" width="40" height="40" alt="Logo de DevTándem"><div><strong class="text-[#14243b]">DevTándem</strong><p class="mt-1">Desarrollo web con revisión de un mentor senior.</p></div></div><nav class="flex flex-wrap gap-x-4 gap-y-2" aria-label="Demostraciones del prototipo"><button onclick="switchView('cliente')">Demo mype</button><button onclick="switchView('junior')">Demo junior</button><button onclick="switchView('mentor')">Demo mentor</button><button onclick="switchView('escrow')">Demo de custodia</button></nav><p>Sitio demostrativo · Arequipa, Perú</p></div></footer>
+  </main>
+
+
+  <!-- ======================================================= -->
+  <!-- VIEW 2: REGISTRO SIMPLE EN 3 PASOS (Figura 2 del informe) -->
+  <!-- ======================================================= -->
+  <section id="view-registro" class="page-view hidden py-12 max-w-3xl mx-auto px-4">
+    <div class="ui-card p-6 sm:p-8 bg-white">
+      
+      <!-- Stepper Header -->
+      <div class="flex items-center justify-between pb-6 border-b border-slate-200">
+        <div>
+          <span class="text-xs font-mono font-bold text-[#2E9E5B]">PASO A PASO</span>
+          <h2 class="text-xl font-bold text-slate-900 mt-0.5">Crear Cuenta en DevTándem</h2>
+        </div>
+        <!-- 3 Step Badges -->
+        <div class="flex items-center gap-2">
+          <span id="step-indicator-1" class="w-6 h-6 rounded-full bg-[#12213D] text-white flex items-center justify-center text-xs font-bold">1</span>
+          <span class="w-3 h-px bg-slate-300"></span>
+          <span id="step-indicator-2" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 border border-slate-300 flex items-center justify-center text-xs font-semibold">2</span>
+          <span class="w-3 h-px bg-slate-300"></span>
+          <span id="step-indicator-3" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 border border-slate-300 flex items-center justify-center text-xs font-semibold">3</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Role -->
+      <div id="reg-step-1" class="mt-6 space-y-4">
+        <p class="text-xs text-slate-600 font-medium">1. Selecciona cómo deseas participar en la plataforma:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div onclick="selectRegRole('cliente')" id="reg-card-cliente" class="cursor-pointer p-4 rounded-xl border-2 border-[#2E9E5B] bg-emerald-50/30 text-center transition">
+            <div class="text-xl mb-1">🏢</div>
+            <div class="font-bold text-xs text-slate-900">Cliente Mype</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Quiero crear mi proyecto</div>
+          </div>
+          <div onclick="selectRegRole('junior')" id="reg-card-junior" class="cursor-pointer p-4 rounded-xl border border-slate-200 bg-white text-center hover:border-slate-300 transition">
+            <div class="text-xl mb-1">💻</div>
+            <div class="font-bold text-xs text-slate-900">Dev Junior</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Primer empleo pagado</div>
+          </div>
+          <div onclick="selectRegRole('mentor')" id="reg-card-mentor" class="cursor-pointer p-4 rounded-xl border border-slate-200 bg-white text-center hover:border-slate-300 transition">
+            <div class="text-xl mb-1">🛡️</div>
+            <div class="font-bold text-xs text-slate-900">Mentor Senior</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Auditar código (S/ 40/h)</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nombres y Apellidos</label>
+            <input type="text" value="Itziar Montes" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none focus:border-[#2E9E5B]">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Correo electrónico</label>
+            <input type="email" value="itziar.montes@megachino.pe" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none focus:border-[#2E9E5B]">
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-end">
+          <button onclick="nextRegStep(2)" class="px-5 py-2 bg-[#12213D] text-white text-xs font-bold rounded-lg shadow-sm">
+            Continuar al Paso 2
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Stack / Requerimiento -->
+      <div id="reg-step-2" class="mt-6 space-y-4 hidden">
+        <p class="text-xs text-slate-600 font-medium">2. Datos de especialidad o necesidad técnica:</p>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Tecnología o Tipo de Solución</label>
+          <select class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none bg-white">
+            <option>Aplicación Web Dinámica con Base de Datos (MERN / Next.js)</option>
+            <option>Sistema de Gestión Interna / Inventario</option>
+            <option>Tienda Virtual E-commerce</option>
+            <option>Landing Page Comercial</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Ciudad de Operación</label>
+          <select class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none bg-white">
+            <option>Arequipa</option>
+            <option>Lima</option>
+            <option>Cusco</option>
+            <option>Trujillo</option>
+          </select>
+        </div>
+
+        <div class="pt-4 flex justify-between">
+          <button onclick="nextRegStep(1)" class="px-4 py-2 text-slate-600 text-xs font-semibold">Atrás</button>
+          <button onclick="nextRegStep(3)" class="px-5 py-2 bg-[#12213D] text-white text-xs font-bold rounded-lg shadow-sm">Continuar a Verificación</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Verificación & Contratos de Alcance (Tabla 35 del informe) -->
+      <div id="reg-step-3" class="mt-6 space-y-4 hidden">
+        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-slate-700 space-y-2">
+          <div class="font-bold text-emerald-900 flex items-center gap-1.5">
+            <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">✓</span>
+            Garantías Contractuales DevTándem (Conforme a Ley 31572 / 32102)
+          </div>
+          <div>• <strong>Contrato de Alcance Cerrado:</strong> Protege de cobros extras o cambios descontrolados.</div>
+          <div>• <strong>Cláusula de Confidencialidad (NDA):</strong> Seguridad estricta de datos empresariales.</div>
+          <div>• <strong>Pago en Custodia:</strong> 100% protegido hasta la aprobación del mentor senior.</div>
+        </div>
+
+        <div class="pt-4 flex justify-between">
+          <button onclick="nextRegStep(2)" class="px-4 py-2 text-slate-600 text-xs font-semibold">Atrás</button>
+          <button onclick="finishRegistration()" class="px-5 py-2.5 bg-[#2E9E5B] hover:bg-[#237B47] text-white text-xs font-bold rounded-lg shadow-sm">
+            Finalizar y Acceder al Panel
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================= -->
+  <!-- VIEW 3: PANEL DEL CLIENTE MYPE (Figura 3 del informe)  -->
+  <!-- ======================================================= -->
+  <section id="view-cliente" class="page-view hidden py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    
+    <!-- Header Mype -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div>
+        <div class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded inline-block border border-amber-200">
+          Panel de Control Mype
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Vitrina Studio SAC (Arequipa)</h2>
+        <p class="text-xs text-slate-500">Supervisa el avance de tus proyectos con auditoría senior en tiempo real.</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="openProjectModal()" class="px-4 py-2 bg-[#2E9E5B] hover:bg-[#237B47] text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5">
+          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+          <span>Nuevo Proyecto</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3 Metrics -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+      <div class="ui-card p-5">
+        <span class="text-xs font-bold text-slate-400 uppercase">Proyectos en Ejecución</span>
+        <div class="text-3xl font-black text-slate-900 mt-2 font-mono">3</div>
+        <div class="text-[11px] text-slate-500 mt-1">1 en revisión senior ahora mismo</div>
+      </div>
+
+      <div class="ui-card p-5">
+        <span class="text-xs font-bold text-slate-400 uppercase">Pendiente de Conformidad</span>
+        <div class="text-3xl font-black text-amber-600 mt-2 font-mono">1</div>
+        <div class="text-[11px] text-slate-500 mt-1">Listo para liberación de fondos</div>
+      </div>
+
+      <div class="ui-card p-5 bg-emerald-50/20 border-emerald-200">
+        <span class="text-xs font-bold text-emerald-800 uppercase">Fondos en Custodia (Escrow)</span>
+        <div class="text-3xl font-black text-emerald-700 mt-2 font-mono">S/ 4,150.00</div>
+        <div class="text-[11px] text-emerald-600 mt-1">Protegido hasta tu aprobación final</div>
+      </div>
+    </div>
+
+    <!-- Table of Projects (Figura 3) -->
+    <div class="mt-8 ui-card overflow-hidden">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+        <h3 class="font-bold text-slate-900 text-sm">Tus Proyectos Activos</h3>
+        <button onclick="switchView('escrow')" class="text-xs font-bold text-emerald-700 hover:underline flex items-center gap-1">
+          <span>Ver estado de custodia</span>
+          <i data-lucide="arrow-right" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-50 text-slate-500 uppercase border-b border-slate-100 font-semibold">
+            <tr>
+              <th class="py-3 px-4">Proyecto</th>
+              <th class="py-3 px-4">Tándem Asignado</th>
+              <th class="py-3 px-4">Avance</th>
+              <th class="py-3 px-4">Estado de Calidad</th>
+              <th class="py-3 px-4 text-right">Acción</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td class="py-3.5 px-4">
+                <div class="font-bold text-slate-900">Landing Page Comercial</div>
+                <div class="text-[11px] text-slate-400">Hito 2: Versión responsive</div>
+              </td>
+              <td class="py-3.5 px-4">
+                <div>Diego Huamán <span class="text-[10px] text-emerald-700 bg-emerald-50 px-1 py-0.5 rounded">Junior</span></div>
+                <div class="text-slate-500 text-[11px]">Marcos Lara <span class="text-[10px] text-blue-700 bg-blue-50 px-1 py-0.5 rounded">Mentor QA</span></div>
+              </td>
+              <td class="py-3.5 px-4 w-40">
+                <div class="font-mono font-bold text-slate-700 mb-1">85%</div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-amber-500 rounded-full" style="width: 85%"></div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                  En revisión senior
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <button onclick="switchView('mentor')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md font-semibold text-xs">
+                  Inspeccionar QA
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="py-3.5 px-4">
+                <div class="font-bold text-slate-900">App de Reservas Web</div>
+                <div class="text-[11px] text-slate-400">Hito 1: Estructura & Auth</div>
+              </td>
+              <td class="py-3.5 px-4">
+                <div>Fernanda Rojas <span class="text-[10px] text-emerald-700 bg-emerald-50 px-1 py-0.5 rounded">Junior</span></div>
+                <div class="text-slate-500 text-[11px]">Marcos Lara <span class="text-[10px] text-blue-700 bg-blue-50 px-1 py-0.5 rounded">Mentor QA</span></div>
+              </td>
+              <td class="py-3.5 px-4 w-40">
+                <div class="font-mono font-bold text-slate-700 mb-1">40%</div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-500 rounded-full" style="width: 40%"></div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                  En desarrollo
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <button onclick="switchView('junior')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md font-semibold text-xs">
+                  Ver Avance
+                </button>
+              </td>
+            </tr>
+
+            <tr class="bg-emerald-50/10">
+              <td class="py-3.5 px-4">
+                <div class="font-bold text-slate-900">Panel de Inventario Mype</div>
+                <div class="text-[11px] text-slate-400">Hito 3: Despliegue en producción</div>
+              </td>
+              <td class="py-3.5 px-4">
+                <div>Luis Mendoza <span class="text-[10px] text-emerald-700 bg-emerald-50 px-1 py-0.5 rounded">Junior</span></div>
+                <div class="text-slate-500 text-[11px]">Sofía Paredes <span class="text-[10px] text-blue-700 bg-blue-50 px-1 py-0.5 rounded">Mentor QA</span></div>
+              </td>
+              <td class="py-3.5 px-4 w-40">
+                <div class="font-mono font-bold text-emerald-700 mb-1">100%</div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-500 rounded-full" style="width: 100%"></div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1 w-max">
+                  ✓ Validado por Senior
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <button onclick="switchView('escrow')" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md font-semibold text-xs shadow-sm">
+                  Liberar Pago
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================= -->
+  <!-- VIEW 4: PANEL DEL PROGRAMADOR JUNIOR (Figura 4 del informe) -->
+  <!-- ======================================================= -->
+  <section id="view-junior" class="page-view hidden py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div>
+        <div class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded inline-block border border-emerald-200">
+          Panel de Desarrollador Junior
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Diego Huamán (Cusco)</h2>
+        <p class="text-xs text-slate-500">Tarifa fija: <strong>S/ 20.00 / hora</strong> • Mentor asignado: <strong>Marcos Lara (Tech Lead)</strong></p>
+      </div>
+
+      <div class="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+        Disponibilidad: Activo en Tándem
+      </div>
+    </div>
+
+    <!-- 3 Junior Metrics -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+      <div class="ui-card p-5">
+        <span class="text-xs font-bold text-slate-400 uppercase">Proyectos Activos</span>
+        <div class="text-3xl font-black text-slate-900 mt-2 font-mono">2</div>
+        <div class="text-[11px] text-slate-500 mt-1">Con mentoría senior en cada PR</div>
+      </div>
+
+      <div class="ui-card p-5">
+        <span class="text-xs font-bold text-slate-400 uppercase">Correcciones Solicitadas</span>
+        <div class="text-3xl font-black text-amber-600 mt-2 font-mono">1</div>
+        <div class="text-[11px] text-slate-500 mt-1">Observación técnica pendiente</div>
+      </div>
+
+      <div class="ui-card p-5">
+        <span class="text-xs font-bold text-emerald-800 uppercase">Honorarios por Cobrar</span>
+        <div class="text-3xl font-black text-emerald-700 mt-2 font-mono">S/ 600.00</div>
+        <div class="text-[11px] text-emerald-600 mt-1">Garantizado en custodia Escrow</div>
+      </div>
+    </div>
+
+    <!-- Feedback & Checklist Box (Ajustes de la Tabla 35) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-8">
+      
+      <!-- Left: Observación del Mentor -->
+      <div class="lg:col-span-7 ui-card p-6">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+          <h3 class="font-bold text-slate-900 text-sm">Bandeja de Corrección (Hito 2)</h3>
+          <span class="text-[10px] font-bold uppercase text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Acción Requerida</span>
+        </div>
+
+        <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+          <div class="flex items-center gap-2 mb-2 font-semibold text-slate-800">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">ML</span>
+            Marcos Lara (Mentor Senior • Hoy 15:15 hrs)
+          </div>
+          <p class="text-slate-600 leading-relaxed bg-white p-3 rounded-lg border border-slate-200">
+            “Buen avance en los componentes, Diego. Revisa el contraste del botón en modo responsive móvil y agrega la validación de formato de correo en el formulario antes de enviar el entregable.”
+          </p>
+        </div>
+
+        <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] text-slate-500">Último commit: <code>fix(mobile): contrast & validation</code></span>
+          <button onclick="submitJuniorFix()" id="junior-submit-btn" class="px-4 py-2 bg-[#2E9E5B] hover:bg-[#237B47] text-white text-xs font-bold rounded-lg shadow-sm transition flex items-center gap-1.5">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Subir Hito Corregido</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Checklist de Evaluación Visible (Requisito de Gabriel Flores en entrevista) -->
+      <div class="lg:col-span-5 ui-card p-6 bg-slate-50/50">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+          <h3 class="font-bold text-slate-900 text-sm">Checklist de Calidad QA</h3>
+          <span class="text-[11px] text-slate-500 font-mono">Criterios visibles</span>
+        </div>
+
+        <ul class="mt-4 space-y-2.5 text-xs text-slate-600">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+            <div><strong>1. Funcionalidad 100%:</strong> Cumple los requerimientos cerrados en el contrato.</div>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+            <div><strong>2. Cero Bloqueos:</strong> Sin errores críticos en pruebas.</div>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+            <div><strong>3. Clean Code:</strong> Modularidad y buenas prácticas legibles.</div>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-600 font-bold mt-0.5">⏳</span>
+            <div><strong>4. Pruebas Mínimas:</strong> Cobertura de tests unitarios básicos.</div>
+          </li>
+        </ul>
+
+        <div class="mt-6 p-3 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-500">
+          💡 <em>Al aprobarse los 4 puntos, el mentor emite el sello oficial que habilita tu cobro.</em>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================= -->
+  <!-- VIEW 5: PANEL DEL MENTOR SENIOR & QA (Figuras 5 y 6)    -->
+  <!-- ======================================================= -->
+  <section id="view-mentor" class="page-view hidden py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div>
+        <div class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded inline-block border border-blue-200">
+          Panel de Auditoría QA (Tech Lead)
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Marcos Lara (Lima)</h2>
+        <p class="text-xs text-slate-500">Tarifa fija: <strong>S/ 40.00 / hora</strong> • Dedicación: 20% del proyecto (SLA ≤ 24 hrs)</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-bold text-blue-800 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200">
+          3 Revisiones en Cola
+        </span>
+      </div>
+    </div>
+
+    <!-- Code Review Workbench (Figura 6 del informe) -->
+    <div class="mt-6 ui-card overflow-hidden">
+      
+      <div class="p-4 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono font-bold bg-blue-600 px-2 py-0.5 rounded">CODE REVIEW</span>
+          <span class="text-xs font-semibold">Landing Page Comercial • Archivo: <code>src/components/CheckoutForm.jsx</code></span>
+        </div>
+        <span class="text-[11px] text-slate-400">Junior: Diego Huamán</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+        
+        <!-- Left: Code Diff -->
+        <div class="lg:col-span-7 p-4 bg-slate-950 text-slate-200 code-container overflow-x-auto text-xs">
+          <div class="text-[11px] text-slate-500 pb-2 border-b border-slate-800 mb-2 flex justify-between">
+            <span>Commit: <code>fix(mobile): contrast & validation</code></span>
+            <span class="text-emerald-400">+12 / -2 líneas</span>
+          </div>
+
+          <div class="text-slate-500">1  import React, { useState } from 'react';</div>
+          <div class="text-slate-500">2  import { ShieldCheck } from 'lucide-react';</div>
+          <div class="text-slate-500">3  </div>
+          <div class="text-slate-500">4  export function CheckoutForm({ amount, onSuccess }) {</div>
+          <div class="bg-rose-950/40 text-rose-300 px-2 rounded">- 5    const [error, setError] = useState(null); // Sin validación previa</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 5    const [loading, setLoading] = useState(false);</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 6    const [emailValid, setEmailValid] = useState(true);</div>
+          <div class="text-slate-500">7  </div>
+          <div class="text-slate-500">8    const handlePay = async () => {</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 9      if (!validateEmail(email)) return setEmailValid(false);</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 10     await processEscrowDeposit(amount);</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 11     onSuccess();</div>
+          <div class="text-slate-500">12   };</div>
+          <div class="text-slate-500">13   return (</div>
+          <div class="bg-emerald-950/50 text-emerald-300 px-2 rounded">+ 14     &lt;button className="btn-primary w-full sm:w-auto"&gt;Pagar S/ {amount}&lt;/button&gt;</div>
+          <div class="text-slate-500">15   );</div>
+          <div class="text-slate-500">16 }</div>
+        </div>
+
+        <!-- Right: Interactive Checklist (Tabla 14 y Figura 6) -->
+        <div class="lg:col-span-5 p-5 bg-white flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Checklist de Aprobación</h4>
+              <span id="qa-progress-text" class="text-xs font-mono font-bold text-emerald-700">3 de 4 criterios</span>
+            </div>
+
+            <div class="mt-3 space-y-2">
+              <label class="flex items-start gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-50 cursor-pointer">
+                <input type="checkbox" id="qa-chk-1" checked onchange="updateQaStatus()" class="mt-0.5 text-emerald-600 rounded">
+                <div class="text-xs">
+                  <div class="font-bold text-slate-800">1. Funcionalidad 100%</div>
+                  <div class="text-slate-500 text-[11px]">Cumple requerimientos del contrato de alcance.</div>
+                </div>
+              </label>
+
+              <label class="flex items-start gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-50 cursor-pointer">
+                <input type="checkbox" id="qa-chk-2" checked onchange="updateQaStatus()" class="mt-0.5 text-emerald-600 rounded">
+                <div class="text-xs">
+                  <div class="font-bold text-slate-800">2. Estabilidad comprobada</div>
+                  <div class="text-slate-500 text-[11px]">Cero caídas o errores bloqueantes.</div>
+                </div>
+              </label>
+
+              <label class="flex items-start gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-50 cursor-pointer">
+                <input type="checkbox" id="qa-chk-3" checked onchange="updateQaStatus()" class="mt-0.5 text-emerald-600 rounded">
+                <div class="text-xs">
+                  <div class="font-bold text-slate-800">3. Legibilidad & Clean Code</div>
+                  <div class="text-slate-500 text-[11px]">Código mantenible sin deuda técnica.</div>
+                </div>
+              </label>
+
+              <label class="flex items-start gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-50 cursor-pointer">
+                <input type="checkbox" id="qa-chk-4" onchange="updateQaStatus()" class="mt-0.5 text-emerald-600 rounded">
+                <div class="text-xs">
+                  <div class="font-bold text-slate-800">4. Pruebas Mínimas</div>
+                  <div class="text-slate-500 text-[11px]">Validación de tests unitarios básicos.</div>
+                </div>
+              </label>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Comentario para el junior:</label>
+              <textarea id="mentor-comment" rows="2" class="w-full p-2 text-xs border border-slate-300 rounded-lg outline-none">Excelente corrección del contraste responsive y validación del correo.</textarea>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 mt-4 flex gap-2">
+            <button onclick="requestCorrections()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg">
+              Pedir Ajuste
+            </button>
+            <button onclick="issueValidationSeal()" id="mentor-seal-btn" class="flex-1 py-2 bg-[#2E9E5B] hover:bg-[#237B47] text-white text-xs font-bold rounded-lg shadow-sm flex items-center justify-center gap-1.5 opacity-50 pointer-events-none transition">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>Emitir Sello Validado</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================= -->
+  <!-- VIEW 6: PASARELA DE PAGOS Y CUSTODIA (Figuras 7 y 11)   -->
+  <!-- ======================================================= -->
+  <section id="view-escrow" class="page-view hidden py-8 max-w-5xl mx-auto px-4 sm:px-6">
+    
+    <div class="pb-6 border-b border-slate-200">
+      <div class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded inline-block border border-emerald-200">
+        Módulo Transaccional
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 mt-1">Custodia Escrow de Fondos</h2>
+      <p class="text-xs text-slate-500">El dinero del cliente queda congelado y solo se distribuye cuando el mentor senior emite su sello.</p>
+    </div>
+
+    <!-- 3 Step Escrow Status (Figura 7 del informe) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+      
+      <div id="escrow-step-card-1" class="p-4 rounded-xl border border-emerald-300 bg-emerald-50/40">
+        <div class="flex items-center justify-between mb-1">
+          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
+          <span class="text-[10px] font-bold text-emerald-800 uppercase bg-emerald-100 px-2 py-0.5 rounded">Completado</span>
+        </div>
+        <h4 class="font-bold text-slate-900 text-xs mt-1">Fondos Depositados</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">El cliente abonó S/ 950.00. Fondos retenidos en cuenta custodia.</p>
+      </div>
+
+      <div id="escrow-step-card-2" class="p-4 rounded-xl border border-emerald-300 bg-emerald-50/40">
+        <div class="flex items-center justify-between mb-1">
+          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">2</span>
+          <span id="escrow-seal-tag" class="text-[10px] font-bold text-emerald-800 uppercase bg-emerald-100 px-2 py-0.5 rounded">Sello Emitido</span>
+        </div>
+        <h4 class="font-bold text-slate-900 text-xs mt-1">Sello Senior Aprobado</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Marcos Lara (Tech Lead) validó la calidad del código sin fallas.</p>
+      </div>
+
+      <div id="escrow-step-card-3" class="p-4 rounded-xl border border-amber-300 bg-amber-50/40">
+        <div class="flex items-center justify-between mb-1">
+          <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px] font-bold">3</span>
+          <span id="escrow-release-tag" class="text-[10px] font-bold text-amber-800 uppercase bg-amber-100 px-2 py-0.5 rounded">Pendiente</span>
+        </div>
+        <h4 class="font-bold text-slate-900 text-xs mt-1">Liberación al Equipo</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">El cliente confirma recepción o se libera a las 72h automáticamente.</p>
+      </div>
+
+    </div>
+
+    <!-- Transaction Breakdown Card -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+      
+      <div class="md:col-span-7 ui-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-mono text-slate-400">PROYECTO SELECCIONADO</span>
+              <h3 class="font-bold text-slate-900 text-base">Landing Page Comercial</h3>
+            </div>
+            <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              ✓ Código Validado
+            </span>
+          </div>
+
+          <div class="mt-4 p-4 rounded-xl bg-slate-900 text-white flex items-center justify-between">
+            <div>
+              <span class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Total retenido en custodia:</span>
+              <div class="text-3xl font-black text-emerald-400 font-mono mt-0.5">S/ 950.00</div>
+            </div>
+            <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400"></i>
+          </div>
+
+          <div class="mt-4 p-3 rounded-lg border border-dashed border-emerald-300 bg-emerald-50/30 text-xs text-emerald-900">
+            <strong>Certificación Técnica:</strong> Auditado por Marcos Lara (Senior Tech Lead). Cumple 100% de requerimientos y sin errores bloqueantes.
+          </div>
+        </div>
+
+        <div class="pt-6">
+          <button onclick="confirmFundsRelease()" id="btn-release-funds" class="w-full py-3.5 bg-[#2E9E5B] hover:bg-[#237B47] text-white text-sm font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Confirmar y Liberar Pago al Equipo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Detailed Breakdown -->
+      <div class="md:col-span-5 ui-card p-6 bg-slate-50/60">
+        <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-3">Desglose Transparente (Tabla 21)</h4>
+        
+        <div class="space-y-3 text-xs">
+          <div class="flex justify-between py-1.5 border-b border-slate-200">
+            <div>
+              <div class="font-bold text-slate-800">Dev Junior (~63%)</div>
+              <div class="text-[11px] text-slate-400">Diego Huamán (30h @ S/ 20)</div>
+            </div>
+            <span class="font-mono font-bold text-slate-800">S/ 600.00</span>
+          </div>
+
+          <div class="flex justify-between py-1.5 border-b border-slate-200">
+            <div>
+              <div class="font-bold text-slate-800">Mentor Senior (~25%)</div>
+              <div class="text-[11px] text-slate-400">Marcos Lara (6h @ S/ 40)</div>
+            </div>
+            <span class="font-mono font-bold text-slate-800">S/ 240.00</span>
+          </div>
+
+          <div class="flex justify-between py-1.5 border-b border-slate-200">
+            <div>
+              <div class="font-bold text-slate-800">DevTándem (~12%)</div>
+              <div class="text-[11px] text-slate-400">Infraestructura & Pasarela</div>
+            </div>
+            <span class="font-mono font-bold text-slate-800">S/ 110.00</span>
+          </div>
+
+          <div class="flex justify-between pt-2 text-sm font-bold text-slate-900">
+            <span>Total del Proyecto:</span>
+            <span class="font-mono text-emerald-700">S/ 950.00</span>
+          </div>
+        </div>
+
+        <div class="mt-6 p-3 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-500">
+          Protección R. Ricasca: En caso de desistimiento del cliente, el mentor cobra por las horas ya invertidas en auditoría.
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================= -->
+  <!-- MODAL: PUBLICACIÓN DE PROYECTO (INTERACTIVO)           -->
+  <!-- ======================================================= -->
+  <div id="modal-project" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="ui-card max-w-lg w-full p-6 bg-white shadow-xl relative animate-in fade-in duration-150">
+      
+      <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-3">
+        <img class="modal-logo" src="icon.jpeg" width="36" height="36" alt="Logo de DevTándem">
+        <div>
+          <h3 class="font-bold text-slate-900 text-base">Simular una cotización</h3>
+          <span class="text-xs text-slate-500">Demostración: no se enviará una solicitud ni se procesará un pago.</span>
+        </div>
+      </div>
+
+      <form onsubmit="handleProjectSubmit(event)" class="space-y-3 mt-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Nombre o Rubro del Proyecto</label>
+          <input type="text" id="modal-prj-name" required placeholder="Ej: Sistema de citas para consultorio" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none focus:border-[#2E9E5B]">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Nivel de Solución</label>
+          <select id="modal-prj-level" onchange="updateModalPrice(this.value)" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none bg-white">
+            <option value="950">Nivel Básico (Landing page informativa) — S/ 950.00</option>
+            <option value="3200" selected>Nivel Intermedio (Web app con base de datos) — S/ 3,200.00</option>
+            <option value="4800">Nivel Avanzado (Tienda virtual con pasarela) — S/ 4,800.00</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Requerimientos Principales</label>
+          <textarea rows="3" placeholder="Describe brevemente lo que tu negocio necesita..." class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg outline-none focus:border-[#2E9E5B]"></textarea>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between">
+          <span class="text-xs text-slate-600 font-medium">Precio de referencia:</span>
+          <span id="modal-price-display" class="text-lg font-bold text-emerald-700 font-mono">S/ 3,200.00</span>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 bg-[#12213D] hover:bg-[#1B2E52] text-white text-xs font-bold rounded-lg shadow-sm transition">
+          Ver ejemplo en el panel demo
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
